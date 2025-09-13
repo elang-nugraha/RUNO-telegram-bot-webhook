@@ -48,4 +48,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the application.
-CMD ["gunicorn", "main:app", "-b", "0.0.0.0:7860"]
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:7860"]
