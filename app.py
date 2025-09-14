@@ -11,7 +11,10 @@ def home():
 @app.route("/webhook")
 def webhook():
     a = os.getenv("BOT_NAME")
-    return jsonify(message=a)
+    os.environ["BOT_NAME"] = "test"
+    b = os.getenv("BOT_NAME")
+
+    return jsonify(message=a+b)
 
 if __name__ == '__main__':
     app.run(debug=True)
