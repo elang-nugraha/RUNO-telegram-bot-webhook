@@ -1,6 +1,5 @@
 from flask import Flask, jsonify
 import os
-from dotenv import load_dotenv
 
 app = Flask(__name__)
 
@@ -14,7 +13,24 @@ def webhook():
     os.environ["BOT_NAME"] = "test"
     b = os.getenv("BOT_NAME")
 
+# using manually constructed response (api post)
+@app.route("v1/webhook/")
+def sendMessageByRequest():
+    a = os.getenv("BOT_NAME")
+    os.environ["BOT_NAME"] = "this is manually response"
+    b = os.getenv("BOT_NAME")
+
+    return jsonify(message=a+b)
+
+# wil be used bot variable 
+@app.route("v2/webhook/")
+def sendMessageByBot():
+    a = os.getenv("BOT_NAME")
+    os.environ["BOT_NAME"] = "this is using bot library response"
+    b = os.getenv("BOT_NAME")
+
     return jsonify(message=a+b)
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
