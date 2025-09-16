@@ -1,9 +1,0 @@
-'''
-    Project notes:
-    - status env will be the handler for convertation
-    - need to regiter deployer to telegram bot token
-    - bot implementation
-        - send message by manually get and construct requaet and response
-        - construct bot telegram bot variable
-            - ref - https://github.com/AliAbdelaal/telegram-bot-tutorial     
-'''
