@@ -32,16 +32,13 @@ def sendMessageByRequest():
     return jsonify(message=a+b)
 
 # wil be used bot variable 
-def botSendingMessage(): 
-    bot.sendMessage(int(os.getenv("ADMIN")), f"Hellooo admin")
-
 @app.route("/v2/webhook/")
 def sendMessageByBot():
     a = os.getenv("BOT_NAME")
     os.environ["BOT_NAME"] = "this is using bot library response"
     b = os.getenv("BOT_NAME")
 
-    asyncio.run(botSendingMessage())
+    asyncio.run(bot.sendMessage(int(os.getenv("ADMIN")), f"Hellooo admin"))
 
     return jsonify(message=a+b)
 
