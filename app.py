@@ -14,7 +14,7 @@ def webhook():
     b = os.getenv("BOT_NAME")
 
 # using manually constructed response (api post)
-@app.route("v1/webhook/")
+@app.route("/v1/webhook/")
 def sendMessageByRequest():
     a = os.getenv("BOT_NAME")
     os.environ["BOT_NAME"] = "this is manually response"
@@ -23,7 +23,7 @@ def sendMessageByRequest():
     return jsonify(message=a+b)
 
 # wil be used bot variable 
-@app.route("v2/webhook/")
+@app.route("/v2/webhook/")
 def sendMessageByBot():
     a = os.getenv("BOT_NAME")
     os.environ["BOT_NAME"] = "this is using bot library response"
