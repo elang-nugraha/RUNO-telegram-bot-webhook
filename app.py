@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import os
 import asyncio
 from dotenv import load_dotenv
@@ -8,19 +8,20 @@ load_dotenv()
 from telegram import Bot
 TOKEN = os.getenv("TELEGRAM_KEY")
 bot = Bot(TOKEN)
-
 app = Flask(__name__)
+
 @app.route("/")
 def home():
     return jsonify(message="Hello, Flask! 🚀")
 
-@app.route("/webhook")
+# registered telegram route
+@app.route("/webhook", methods=["POST"])
 def webhook():
-    a = os.getenv("BOT_NAME")
-    os.environ["BOT_NAME"] = "test"
-    b = os.getenv("BOT_NAME")
+    update = request.get_json()
 
-    return a+b
+    print(request)
+
+    return {"ok": True}
 
 # using manually constructed response (api post)
 @app.route("/v1/webhook/")
