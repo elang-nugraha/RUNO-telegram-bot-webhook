@@ -19,7 +19,7 @@ def home():
 def webhook():
     update = request.get_json()
 
-    print(request)
+    print(update)
 
     return {"ok": True}
 
