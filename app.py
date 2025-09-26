@@ -44,11 +44,11 @@ def webhook():
         "/addTransaction"
     message = "/start"
     if (message == "/start" ):
-        sendMessageByBot("Hello Welcome to ", 100)
-        sendMessageByBot(botCommands, 100)
+        print(sendMessageByBot("Hello Welcome to ", 100))
+        print(sendMessageByBot(botCommands, 100))
     else:
-        sendMessageByBot(botCommands, 100)
-        sendMessageByBot("Ask admin for use commands", 100)
+        print(sendMessageByBot(botCommands, 100))
+        print(sendMessageByBot("Ask admin for use commands", 100))
     # message handling
         # command message
         # based on env status (conv)
@@ -57,10 +57,11 @@ def webhook():
 
 def sendMessageByBot(message  : str, id : int):
     id = os.getenv("ADMIN")
-    if loop.is_running():
-        loop.create_task(bot.send_message(bot.send_message(id, message)))
-    else:
-        loop.run_until_complete(bot.send_message(id, message))
+    # if loop.is_running():
+    #     loop.create_task(bot.send_message(bot.send_message(id, message)))
+    # else:
+    #     loop.run_until_complete(bot.send_message(id, message))
+    return id
 
 # using manually constructed response (api post)
 # @app.route("/v1/webhook/")
