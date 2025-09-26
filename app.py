@@ -20,35 +20,35 @@ def home():
     return jsonify(message="Hello, Flask! 🚀")
 
 # registered telegram route
-@app.route("/webhook", methods=["POST"])
+@app.route("/webhook")
 def webhook():
     update = request.get_json()
-    # construct user
+
     user = User(update)
     print(user.getId())
     print(user.getName())
 
-    # user handling
-        # access user database
-        # access user Id state or env status (conv)
+    # # user handling
+    #     # access user database
+    #     # access user Id state or env status (conv)
 
-    message = update.get("message").get("text")
-    message = message.strip()
-    botCommands = "BOT Commands\n\n \
-        /userRegistration \n " \
+    # message = update.get("message").get("text")
+    # message = message.strip()
+    botCommands = "BOT Commands\n\n" \
+        "/userRegistration \n " \
         "/openRegistration \n " \
         "/closeRegistration \n" \
         "/addItem \n" \
         "/updateStock \n" \
         "/getStock \n" \
         "/addTransaction"
-
+    message = "/start"
     if (message == "/start" ):
-        sendMessageByBot("Hello Welcome to ", user.getId())
-        sendMessageByBot(botCommands, user.getId())
+        sendMessageByBot("Hello Welcome to ", 100)
+        sendMessageByBot(botCommands, 100)
     else:
-        sendMessageByBot(botCommands, user.getId())
-        sendMessageByBot("Ask admin for use commands", user.getId())
+        sendMessageByBot(botCommands, 100)
+        sendMessageByBot("Ask admin for use commands", 100)
     # message handling
         # command message
         # based on env status (conv)
@@ -56,11 +56,11 @@ def webhook():
     return {"ok": True}
 
 def sendMessageByBot(message  : str, id : int):
-    return "ok"
-    # if loop.is_running():
-    #     loop.create_task(bot.send_message(bot.send_message(id, message)))
-    # else:
-    #     loop.run_until_complete(bot.send_message(id, message))
+    id = os.getenv("ADMIN")
+    if loop.is_running():
+        loop.create_task(bot.send_message(bot.send_message(id, message)))
+    else:
+        loop.run_until_complete(bot.send_message(id, message))
 
 # using manually constructed response (api post)
 # @app.route("/v1/webhook/")
