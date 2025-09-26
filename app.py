@@ -20,7 +20,7 @@ def home():
     return jsonify(message="Hello, Flask! 🚀")
 
 # registered telegram route
-@app.route("/webhook")
+@app.route("/webhook", methods=["POST"])
 def webhook():
     update = request.get_json()
 
