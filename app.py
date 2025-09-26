@@ -56,10 +56,11 @@ def webhook():
     return {"ok": True}
 
 def sendMessageByBot(message  : str, id : int):
-    if loop.is_running():
-        loop.create_task(bot.send_message(bot.send_message(id, message)))
-    else:
-        loop.run_until_complete(bot.send_message(id, message))
+    return "ok"
+    # if loop.is_running():
+    #     loop.create_task(bot.send_message(bot.send_message(id, message)))
+    # else:
+    #     loop.run_until_complete(bot.send_message(id, message))
 
 # using manually constructed response (api post)
 # @app.route("/v1/webhook/")
