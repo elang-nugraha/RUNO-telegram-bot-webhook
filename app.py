@@ -1,28 +1,38 @@
 from flask import Flask, jsonify, request
 import os
-import asyncio
 from dotenv import load_dotenv
+import asyncio
 
 load_dotenv()
 
+from model.user import User
+
 from telegram import Bot
-TOKEN = os.getenv("TELEGRAM_KEY")
+TOKEN = os.getenv("TELEGRAM_KEY2")
 bot = Bot(TOKEN)
 app = Flask(__name__)
 
 @app.route("/")
 def home():
+    # will be used for static web(maybe)
     return jsonify(message="Hello, Flask! 🚀")
 
 # registered telegram route
 @app.route("/webhook", methods=["POST"])
 def webhook():
     update = request.get_json()
+    # construct user
+    user = User(update)
+    print(user.getId())
+    print(user.getName())
 
-    print(update)
-    print(type(update))
-    for i in update:
-        print(i)
+    # user handling
+        # access user database
+        # access user Id state or env status (conv)
+
+    # message handling
+        # command message
+        # based on env status (conv)
 
     return {"ok": True}
 
@@ -46,6 +56,6 @@ def sendMessageByBot():
 
     return jsonify(message=a+b)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
     

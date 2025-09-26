@@ -1,0 +1,36 @@
+Project notes:
+- conversation handler
+    - question
+        - more than one user oen at the time?
+        - if we using user state documentation do we use env var?
+    - using status enc var
+        - static and for one user only
+        - if there is a pause time from the user will be continue from last state
+    - using user state (global var)
+        - will be reset if the app sleep
+        - can be used for multiple user
+
+- register deployer to telegram bot token (done)
+- bot implementation
+    - send message by manually get and construct requaet and response
+    - construct bot telegram bot variable
+        - ref - https://github.com/AliAbdelaal/telegram-bot-tutorial    
+
+
+- Learn about this generated docker code 
+
+Todo:
+- make model
+    - request (nope, i think??)
+    - user (done)
+    - product
+        - from message data (do we need message object??)
+        - variable needs to be a global variable to be a convertation
+    - transaction
+        - same as product
+- make microservice system
+    - vercel nodeJS
+- Database
+    - vercel DB
+    - railway MongoDB
+    - firebase
