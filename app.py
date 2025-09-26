@@ -20,6 +20,9 @@ def webhook():
     update = request.get_json()
 
     print(update)
+    print(type(update))
+    for i in update:
+        print(i)
 
     return {"ok": True}
 
